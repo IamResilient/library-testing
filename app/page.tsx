@@ -1,7 +1,9 @@
-import { PlanetSystemTabs } from "@/components/PlanetSystemTabs";
+'use client';
+
+import { ThreePlanetSystem } from "@/components/ThreePlanetSystem";
 
 export default function Home() {
   return (
-    <PlanetSystemTabs />
+    <ThreePlanetSystem />
   );
 }

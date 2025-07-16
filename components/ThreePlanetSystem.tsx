@@ -1,27 +1,28 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import { Scene } from './ThreeComponents/Scene';
-import { PlanetNode } from '@/types/types';
+import { Scene } from '@/widgets/RealityModel/Scene';
+import { ZoomHandler } from '@/widgets/RealityModel/ZoomHandler';
+import { rawData } from '@/utils/planetData';
+import { generatePlanetTree } from '@/utils/treeUtils';
 
-interface ThreePlanetSystemProps {
-    root: PlanetNode;
-    width?: number;
-    height?: number;
-}
+const rootTree = generatePlanetTree(rawData);
 
-export function ThreePlanetSystem({ root, width = 800, height = 800 }: ThreePlanetSystemProps) {
+export function ThreePlanetSystem() {
     return (
         <Canvas
             orthographic
-            camera={{ zoom: 6, position: [0, 0, 100] }}
-            style={{ width: '100%', height: '100%' }}
+            camera={{
+                zoom: 1.2,
+                position: [0, 0, 100],
+            }}
+            style={{ width: '100vw', height: '100vh', background: 'black' }}
         >
-            <OrbitControls enableZoom enableRotate={false} />
-            <group scale={[2.5, 2.5, 1]}>
-                <Scene root={root} />
-            </group>
+            <ambientLight intensity={1} />
+            <ZoomHandler />
+            <Scene
+                nodes={rootTree}
+            />
         </Canvas>
     );
 }
