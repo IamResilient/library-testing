@@ -4,7 +4,6 @@ export type Vec3 = [number, number, number];
 export interface RawNode {
     name: string;
     description?: string;
-    radius: number;
     overall_fulfillment_score?: number;
     fulfillment_level_score?: number;
     children?: RawNode[];

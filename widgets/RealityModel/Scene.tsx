@@ -1,5 +1,5 @@
 import { useRef, useMemo, useState, useEffect } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Planet } from './Planet';
 import { Line } from './Line';
@@ -12,7 +12,7 @@ type SceneProps = {
 
 export function Scene({ nodes }: SceneProps) {
     const [visibleIds, setVisibleIds] = useState<Set<string>>(() =>
-        new Set(flattenTree(nodes, 1).map(n => n.id))
+        new Set(flattenTree(nodes, 10).map(n => n.id))
     );
     const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
     const [targetCameraPosition, setTargetCameraPosition] = useState<THREE.Vector3 | null>(null);
